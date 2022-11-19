@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tik_tac_toe/StartScreen.dart';
 
 import 'HomeScreen.dart';
 
@@ -12,8 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: StartedScreen(),
     );
   }
 }

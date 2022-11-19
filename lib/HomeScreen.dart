@@ -11,8 +11,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // 1st player is O
   List<String> displayElement = ['', '', '', '', '', '', '', '', ''];
-  int oScore = 0;
-  int xScore = 0;
+
   int filledBoxes = 0;
 
   @override
@@ -20,50 +19,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.indigo[900],
       body: Column(
-        children: <Widget>[
+        children: [
           Expanded(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Player X',
-                          style: TextStyle(fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        Text(
-                          xScore.toString(),
-                          style: TextStyle(fontSize: 20,color: Colors.white),
-                        ),
-                      ],
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    MaterialButton(
+                      color: Colors.white,
+                      onPressed: _clearScoreBoard,
+                      child: Text("Clear Score Board"),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('Player O', style: TextStyle(fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white)
-                        ),
-                        Text(
-                          oScore.toString(),
-                          style: TextStyle(fontSize: 20,color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                  ],
+                ),
+              )),
           Expanded(
             flex: 4,
             child: GridView.builder(
@@ -88,20 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }),
           ),
-          Expanded(
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    IconButton(
-                      color: Colors.indigo[50],
 
-                      onPressed: _clearScoreBoard,
-                      icon: Text("Clear Score Board"),
-                    ),
-                  ],
-                ),
-              ))
         ],
       ),
     );
@@ -193,11 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         });
 
-    if (winner == 'O') {
-      oScore++;
-    } else if (winner == 'X') {
-      xScore++;
-    }
+
   }
 
   void _showDrawDialog() {
@@ -214,7 +166,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   _clearBoard();
                   Navigator.of(context).pop();
                 },
-              )
+
+              ),
+              MaterialButton(
+                color: Colors.white,
+                onPressed: _clearScoreBoard,
+                child: Text("Clear Score Board"),
+              ),
             ],
           );
         });
@@ -232,8 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _clearScoreBoard() {
     setState(() {
-      xScore = 0;
-      oScore = 0;
+
       for (int i = 0; i < 9; i++) {
         displayElement[i] = '';
       }
